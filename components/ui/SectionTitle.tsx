@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface SectionTitleProps {
   eyebrow?: string;
   title: string;
@@ -19,7 +21,7 @@ export default function SectionTitle({
 
   const renderTitle = () => {
     if (accentWords.length === 0) return title;
-    let parts: (string | JSX.Element)[] = [title];
+    let parts: (string | React.ReactElement)[] = [title];
     accentWords.forEach((word, wi) => {
       parts = parts.flatMap((part, pi) => {
         if (typeof part !== 'string') return [part];

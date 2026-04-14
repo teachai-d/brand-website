@@ -1,8 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, Mail, Clock, ArrowRight, Quote } from 'lucide-react';
-import Button from '@/components/ui/Button';
+import { MessageCircle, Mail, Clock, ArrowRight } from 'lucide-react';
 import SectionTitle from '@/components/ui/SectionTitle';
 
 const contactCards = [
@@ -32,91 +32,133 @@ const contactCards = [
   },
 ];
 
-const testimonials = [
-  {
-    quote: "처음엔 디자인을 전혀 몰랐는데, 러블리디 선생님 덕분에 제 강의 브랜딩을 직접 만들 수 있게 됐어요. 정말 따뜻하게 가르쳐주셔서 감사해요.",
-    name: '김OO',
-    role: '온라인 강의 크리에이터',
-  },
-  {
-    quote: "의뢰한 랜딩 페이지 오픈 후 수강 신청이 3배 늘었어요. 단순한 디자인이 아니라 전략까지 담아주시는 게 다른 것 같아요.",
-    name: '이OO',
-    role: '1인 교육 기업 대표',
-  },
-];
 
 export default function ContactSection() {
+  const [name, setName] = useState('');
+  const [inquiryType, setInquiryType] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`[${inquiryType || '문의'}] ${name}님의 문의`);
+    const body = encodeURIComponent(`이름: ${name}\n문의 유형: ${inquiryType}\n\n내용:\n${message}`);
+    window.location.href = `mailto:hello@teachaid.kr?subject=${subject}&body=${body}`;
+  };
+
   return (
     <section id="contact" className="bg-[#F9FAF8] py-24 md:py-32 px-6 md:px-10">
       <div className="max-w-6xl mx-auto flex flex-col gap-16">
 
-        {/* Testimonials */}
-        <div className="flex flex-col gap-8">
-          <SectionTitle
-            eyebrow="후기"
-            title="함께한 분들의 이야기"
-            accentWords={['이야기']}
-            align="center"
-          />
-          <div className="grid md:grid-cols-2 gap-5">
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white rounded-2xl p-7 border border-[#E5E5E5] flex flex-col gap-4"
-                style={{ boxShadow: '0 2px 16px rgba(13,89,60,0.05)' }}
-              >
-                <Quote size={20} className="text-[#CFE3D8]" />
-                <p className="text-[#3A3A3A] text-sm leading-relaxed italic">"{t.quote}"</p>
-                <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
-                  <div className="w-8 h-8 rounded-full bg-[#E8F3EC] flex items-center justify-center text-[#0D593C] font-bold text-sm">
-                    {t.name[0]}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-[#1A1A1A]">{t.name}</p>
-                    <p className="text-xs text-[#999999]">{t.role}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA Banner */}
+        {/* CTA Banner + Inquiry Form */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative bg-[#0D593C] rounded-3xl px-8 md:px-14 py-12 overflow-hidden flex flex-col md:flex-row md:items-center md:justify-between gap-8"
+          className="relative bg-[#0D593C] rounded-3xl overflow-hidden"
         >
           {/* BG decoration */}
-          <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10"
+          <div className="absolute top-0 right-0 w-72 h-72 rounded-full opacity-10 pointer-events-none"
             style={{ background: 'radial-gradient(circle, #CFE3D8, transparent)' }} />
-          <div className="absolute bottom-0 left-0 w-40 h-40 rounded-full opacity-10"
+          <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full opacity-10 pointer-events-none"
             style={{ background: 'radial-gradient(circle, #F29CA3, transparent)' }} />
 
-          <div className="relative flex flex-col gap-3">
-            <span className="text-[#CFE3D8] text-sm font-semibold">함께 시작해요</span>
-            <h2 className="text-white text-2xl md:text-3xl font-bold leading-tight">
-              당신의 이야기를<br />아름답게 만들어드릴게요. 🌱
-            </h2>
-            <p className="text-[#A8C9B8] text-sm leading-relaxed">
-              어떤 작업이든 먼저 이야기해 주세요. 방향부터 함께 잡아드립니다.
-            </p>
-          </div>
+          <div className="relative grid md:grid-cols-2 gap-0">
+            {/* Left: 문구 */}
+            <div className="flex flex-col justify-center gap-5 px-8 md:px-14 py-12 md:py-16 md:border-r md:border-white/10">
+              <span className="text-[#CFE3D8] text-sm font-semibold">함께 시작해요</span>
+              <h2 className="text-white text-2xl md:text-3xl font-bold leading-tight">
+                당신의 이야기를<br />아름답게 만들어드릴게요. 🌱
+              </h2>
+              <p className="text-[#A8C9B8] text-sm leading-relaxed">
+                어떤 작업이든 먼저 이야기해 주세요.<br />방향부터 함께 잡아드립니다.
+              </p>
+              {/* Contact hints */}
+              <div className="flex flex-col gap-2 pt-2">
+                <div className="flex items-center gap-2 text-xs text-[#7BB99A]">
+                  <MessageCircle size={13} />
+                  카카오톡 @teachaid · 평균 1시간 이내 응답
+                </div>
+                <div className="flex items-center gap-2 text-xs text-[#7BB99A]">
+                  <Mail size={13} />
+                  hello@teachaid.kr · 24시간 이내 회신
+                </div>
+              </div>
+            </div>
 
-          <Button
-            href="mailto:hello@teachaid.kr"
-            variant="accent-pink"
-            size="lg"
-            className="relative shrink-0 whitespace-nowrap"
-          >
-            작업문의 하기 <ArrowRight size={16} className="ml-2" />
-          </Button>
+            {/* Right: 문의 폼 */}
+            <div
+              className="px-8 md:px-12 py-12 md:py-16 rounded-r-3xl"
+              style={{
+                background: 'linear-gradient(white, white) padding-box, linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(207,227,216,0.7) 40%, rgba(13,89,60,0.35) 100%) border-box',
+                border: '1.5px solid transparent',
+              }}
+            >
+              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                {/* 이름 */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-semibold text-[#3A3A3A]">
+                    이름 <span className="text-[#F29CA3]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="홍길동"
+                    className="w-full rounded-xl border border-[#E5E5E5] bg-[#F9FAF8] px-4 py-3 text-sm text-[#1A1A1A] placeholder-[#BBBBBB] outline-none focus:border-[#0D593C] focus:ring-2 focus:ring-[#0D593C]/10 transition-all"
+                  />
+                </div>
+                {/* 문의 유형 */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-semibold text-[#3A3A3A]">
+                    문의 유형 <span className="text-[#F29CA3]">*</span>
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { key: '디자인 의뢰', label: '🎨 디자인 의뢰' },
+                      { key: '강의 수강',   label: '📚 강의 수강'   },
+                      { key: '기타 문의',   label: '💬 기타 문의'   },
+                    ].map(({ key, label }) => (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => setInquiryType(key)}
+                        className={`px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-150 ${
+                          inquiryType === key
+                            ? 'bg-[#0D593C] text-white border-[#0D593C] shadow-sm'
+                            : 'bg-white text-[#3A3A3A] border-[#E5E5E5] hover:border-[#0D593C] hover:text-[#0D593C]'
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                {/* 문의 내용 */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-semibold text-[#3A3A3A]">
+                    문의 내용 <span className="text-[#F29CA3]">*</span>
+                  </label>
+                  <textarea
+                    required
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="어떤 작업을 원하시나요? 간단하게 적어주셔도 괜찮아요 😊"
+                    rows={4}
+                    className="w-full rounded-xl border border-[#E5E5E5] bg-[#F9FAF8] px-4 py-3 text-sm text-[#1A1A1A] placeholder-[#BBBBBB] outline-none focus:border-[#0D593C] focus:ring-2 focus:ring-[#0D593C]/10 transition-all resize-none"
+                  />
+                </div>
+                {/* 제출 */}
+                <button
+                  type="submit"
+                  className="inline-flex items-center justify-center gap-2 font-semibold rounded-full bg-white text-[#0D593C] hover:bg-[#0D593C] hover:text-white border border-[#0D593C] hover:-translate-y-0.5 shadow-sm hover:shadow-md active:translate-y-0 transition-all duration-200 text-sm px-7 py-3.5 w-full md:w-auto self-start"
+                >
+                  문의 보내기 <ArrowRight size={15} />
+                </button>
+              </form>
+            </div>
+          </div>
         </motion.div>
 
         {/* Contact Cards */}
