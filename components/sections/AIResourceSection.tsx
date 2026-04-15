@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Sparkles, FileText, Cpu, Wand2, BarChart2, Globe } from 'lucide-react';
+import { Sparkles, FileText, Cpu, Wand2, BarChart2, Globe, Download, BookOpen } from 'lucide-react';
 import SectionTitle from '@/components/ui/SectionTitle';
 import Button from '@/components/ui/Button';
 
@@ -73,6 +73,47 @@ export default function AIResourceSection() {
             자료실 전체보기
           </Button>
         </div>
+
+        {/* Featured PDF Banner */}
+        <motion.a
+          href="/superpowers-claude-code-guide.pdf"
+          download="superpowers-claude-code-guide.pdf"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1E1B4B] to-[#312E81] border border-[#4338CA]/40 p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6 cursor-pointer hover:from-[#312E81] hover:to-[#4338CA] transition-all duration-300"
+        >
+          {/* Glow */}
+          <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#6366F1]/20 blur-3xl pointer-events-none" />
+
+          {/* Icon */}
+          <div className="shrink-0 w-14 h-14 rounded-2xl bg-[#4F46E5]/30 border border-[#6366F1]/40 flex items-center justify-center">
+            <BookOpen size={26} className="text-[#A5B4FC]" strokeWidth={1.5} />
+          </div>
+
+          {/* Text */}
+          <div className="flex flex-col gap-1.5 flex-1">
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#10B981]/20 text-[#34D399]">
+                NEW  PDF
+              </span>
+              <span className="text-[11px] font-semibold text-[#818CF8]">153K ⭐ 저장소 분석</span>
+            </div>
+            <h3 className="text-base md:text-lg font-bold text-white leading-snug">
+              Superpowers + Claude Code 완전 가이드
+            </h3>
+            <p className="text-sm text-[#A5B4FC] leading-relaxed">
+              obra/superpowers 심층 분석 · Claude Code 초보자 핵심 · 추천 리소스 큐레이션 · 학습 로드맵 — 5페이지 PDF
+            </p>
+          </div>
+
+          {/* CTA */}
+          <div className="shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#4F46E5] group-hover:bg-[#6366F1] transition-colors text-white text-sm font-semibold">
+            <Download size={15} strokeWidth={2} />
+            무료 다운로드
+          </div>
+        </motion.a>
 
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[15px]">
