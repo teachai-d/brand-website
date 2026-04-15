@@ -47,7 +47,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="bg-[#F9FAF8] py-24 md:py-32 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto flex flex-col gap-16">
+      <div className="content-container flex flex-col gap-16">
 
         {/* CTA Banner + Inquiry Form */}
         <motion.div
@@ -152,7 +152,7 @@ export default function ContactSection() {
                 {/* 제출 */}
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 font-semibold rounded-full bg-white text-[#0D593C] hover:bg-[#0D593C] hover:text-white border border-[#0D593C] hover:-translate-y-0.5 shadow-sm hover:shadow-md active:translate-y-0 transition-all duration-200 text-sm px-7 py-3.5 w-full md:w-auto self-start"
+                  className="inline-flex items-center justify-center gap-2 font-medium tracking-[1px] rounded-[3px] bg-[var(--button-bg)] text-[var(--button-text)] border border-[var(--button-border)] hover:bg-[var(--button-hover-bg)] hover:text-[var(--button-hover-text)] hover:border-[var(--button-hover-border)] transition-colors duration-200 text-[15px] px-[20px] py-[11px] w-full md:w-auto self-start"
                 >
                   문의 보내기 <ArrowRight size={15} />
                 </button>
@@ -162,7 +162,7 @@ export default function ContactSection() {
         </motion.div>
 
         {/* Contact Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[15px]">
           {contactCards.map((c, i) => {
             const Icon = c.icon;
             return (

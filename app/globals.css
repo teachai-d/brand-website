@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css');
+@import "tailwindcss";
 
 @theme {
   /* ── Brand Colors ─────────────────────── */
@@ -33,6 +33,26 @@
 
   /* ── Typography ─────────────────────── */
   --font-sans: 'Pretendard Variable', 'Noto Sans KR', sans-serif;
+  --font-size-body: 15px;
+  --line-height-body: 1.6;
+  --font-weight-body: 400;
+
+  /* ── Common Design Settings ─────────── */
+  --layout-content-width: 1280px;
+  --layout-grid-gap: 15px;
+  --color-option-badge: #0D593C;
+  --color-badge: #0D593C;
+  --color-text-default: #000000;
+  --color-bg-default: #FFFFFF;
+  --button-bg: #0D593C;
+  --button-text: #FFFFFF;
+  --button-border: #0D593C;
+  --button-hover-bg: #FFFFFF;
+  --button-hover-text: #0D593C;
+  --button-hover-border: #0D593C;
+  --button-padding-x: 20px;
+  --button-letter-spacing: 1px;
+  --button-radius: 3px;
 
   /* ── Radius ─────────────────────────── */
   --radius-card:  16px;
@@ -44,15 +64,26 @@
   --shadow-hover: 0 8px 32px rgba(13,89,60,0.13);
 }
 
+.content-container {
+  max-width: var(--layout-content-width);
+  margin-inline: auto;
+}
+
+.grid-standard {
+  gap: var(--layout-grid-gap);
+}
+
 /* ─── Base ───────────────────────────────── */
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Pretendard Variable', 'Noto Sans KR', sans-serif;
-  background-color: #FFFFFF;
-  color: #1A1A1A;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-body);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-default);
   -webkit-font-smoothing: antialiased;
-  line-height: 1.6;
 }
 
 /* ─── Scrollbar ──────────────────────────── */

@@ -46,7 +46,7 @@ const services = [
 export default function ServiceSection() {
   return (
     <section id="service" className="bg-white py-24 md:py-32 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto flex flex-col gap-14">
+      <div className="content-container flex flex-col gap-14">
         <div className="flex flex-col items-center">
           <SectionTitle
             eyebrow="서비스"
@@ -56,7 +56,7 @@ export default function ServiceSection() {
             align="center"
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[15px]">
           {services.map((s, i) => (
             <ServiceCard key={s.title} {...s} index={i} />
           ))}

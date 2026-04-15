@@ -55,7 +55,7 @@ const projects = [
 export default function PortfolioSection() {
   return (
     <section id="portfolio" className="bg-[#F9FAF8] py-24 md:py-32">
-      <div className="max-w-6xl mx-auto px-6 md:px-10 mb-12">
+      <div className="content-container px-6 md:px-10 mb-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <SectionTitle
             eyebrow="포트폴리오"
@@ -75,7 +75,7 @@ export default function PortfolioSection() {
 
       {/* Carousel */}
       <div
-        className="flex gap-5 overflow-x-auto px-6 md:px-10 pb-4 scrollbar-hide"
+        className="flex gap-[15px] overflow-x-auto px-6 md:px-10 pb-4 scrollbar-hide"
         style={{ scrollSnapType: 'x mandatory' }}
       >
         {projects.map((p, i) => (

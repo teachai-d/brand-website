@@ -108,7 +108,7 @@ const TestimonialsColumn = ({
 export default function TestimonialsSection() {
   return (
     <section id="reviews" className="bg-white py-24 md:py-32 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto flex flex-col gap-10">
+      <div className="content-container flex flex-col gap-10">
         <SectionTitle
           eyebrow="후기"
           title="함께한 분들의 이야기"

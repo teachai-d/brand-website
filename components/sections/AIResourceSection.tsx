@@ -59,7 +59,7 @@ const resources = [
 export default function AIResourceSection() {
   return (
     <section id="ai-resources" className="bg-white py-24 md:py-32 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto flex flex-col gap-14">
+      <div className="content-container flex flex-col gap-14">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <SectionTitle
@@ -75,7 +75,7 @@ export default function AIResourceSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[15px]">
           {resources.map((r, i) => {
             const Icon = r.icon;
             return (

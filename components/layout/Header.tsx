@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
 import { Menu, X, Sprout } from 'lucide-react';
-import Button from '@/components/ui/Button';
 
 const navLinks = [
   { label: '소개',      href: '#about' },
@@ -16,6 +15,7 @@ const navLinks = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -33,7 +33,7 @@ export default function Header() {
           borderBottom: scrolled ? '1px solid #E5E5E5' : 'none',
         }}
       >
-        <div className="max-w-6xl mx-auto px-6 md:px-10 h-16 md:h-[72px] flex items-center justify-between">
+        <div className="content-container px-6 md:px-10 h-16 md:h-[72px] flex items-center justify-between relative">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5 shrink-0">
             <div className="w-8 h-8 rounded-lg bg-[#0D593C] flex items-center justify-center">
@@ -45,23 +45,39 @@ export default function Header() {
             </div>
           </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-[#3A3A3A] hover:text-[#0D593C] transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
-            <Button href="#contact" size="sm">작업문의</Button>
-          </div>
+          {/* Desktop Nav — absolutely centered */}
+          <MotionConfig transition={{ bounce: 0, type: 'tween' }}>
+            <nav className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2">
+              <ul className="flex items-center">
+                {navLinks.map((link) => (
+                  <li key={link.href} className="relative">
+                    <a
+                      href={link.href}
+                      className="relative flex items-center justify-center rounded px-5 py-2 font-medium text-[#3A3A3A] transition-all"
+                      style={{
+                        fontSize: '20px',
+                        fontFamily: "'Pretendard Variable', sans-serif",
+                        backgroundColor: hovered === link.href ? 'rgba(13,89,60,0.07)' : 'transparent',
+                        color: hovered === link.href ? '#0D593C' : '#3A3A3A',
+                      }}
+                      onMouseEnter={() => setHovered(link.href)}
+                      onMouseLeave={() => setHovered(null)}
+                    >
+                      {link.label}
+                    </a>
+                    {hovered === link.href && (
+                      <motion.div
+                        layout
+                        layoutId="cursor"
+                        className="absolute bottom-0 h-0.5 w-full"
+                        style={{ backgroundColor: '#0D593C' }}
+                      />
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </MotionConfig>
 
           {/* Mobile Hamburger */}
           <button
@@ -94,9 +110,6 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <Button href="#contact" onClick={() => setMenuOpen(false)}>
-              작업문의 하기
-            </Button>
           </motion.div>
         )}
       </AnimatePresence>

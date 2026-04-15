@@ -20,23 +20,23 @@ export default function Button({
   className = '',
 }: ButtonProps) {
   const base =
-    'inline-flex items-center justify-center font-semibold transition-all duration-200 rounded-full cursor-pointer leading-none';
+    'inline-flex items-center justify-center font-medium transition-colors duration-200 cursor-pointer leading-none border tracking-[1px] rounded-[3px]';
 
   const variants = {
     primary:
-      'bg-[#0D593C] text-white hover:bg-[#0f6a48] hover:-translate-y-0.5 shadow-sm hover:shadow-md active:translate-y-0',
+      'bg-[var(--button-bg)] text-[var(--button-text)] border-[var(--button-border)] hover:bg-[var(--button-hover-bg)] hover:text-[var(--button-hover-text)] hover:border-[var(--button-hover-border)]',
     secondary:
-      'border-2 border-[#0D593C] text-[#0D593C] bg-white hover:bg-[#0D593C] hover:text-white active:scale-95',
+      'bg-[var(--button-hover-bg)] text-[var(--button-hover-text)] border-[var(--button-hover-border)] hover:bg-[var(--button-bg)] hover:text-[var(--button-text)] hover:border-[var(--button-border)]',
     'accent-pink':
-      'bg-[#F29CA3] text-white hover:bg-[#e8858d] hover:-translate-y-0.5 shadow-sm active:translate-y-0',
+      'bg-[#F29CA3] text-white border-[#F29CA3] hover:bg-white hover:text-[#F29CA3] hover:border-[#F29CA3]',
     'accent-gold':
-      'bg-[#D4A373] text-white hover:bg-[#c0905e] hover:-translate-y-0.5 shadow-sm active:translate-y-0',
+      'bg-[#D4A373] text-white border-[#D4A373] hover:bg-white hover:text-[#D4A373] hover:border-[#D4A373]',
   };
 
   const sizes = {
-    sm:  'text-sm px-5 py-2.5',
-    md:  'text-base px-6 py-3',
-    lg:  'text-base px-8 py-4',
+    sm:  'text-[14px] px-[20px] py-[9px]',
+    md:  'text-[15px] px-[20px] py-[11px]',
+    lg:  'text-[15px] px-[20px] py-[13px]',
   };
 
   const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
