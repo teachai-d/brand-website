@@ -45,3 +45,6 @@ next-env.d.ts
 # handoff files (agent-local)
 .claude/HANDOFF.md
 .codex/HANDOFF.md
+
+# Claude Code local settings & memory
+.claude/

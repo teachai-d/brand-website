@@ -24,13 +24,12 @@ const accordionItems = [
     id: 1,
     title: 'Web Design',
     // UI/UX 홈페이지 화면
-    imageUrl: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1964&auto=format&fit=crop',
+    imageUrl: '/image/WEBDESIGN1.png',
   },
   {
     id: 2,
     title: 'Product Details Page',
-    // 애플 스타일 제품 사진
-    imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1976&auto=format&fit=crop',
+    imageUrl: '/image/page.png',
   },
   {
     id: 3,
