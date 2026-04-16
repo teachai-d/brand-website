@@ -24,25 +24,33 @@ const accordionItems = [
     id: 1,
     title: 'Web Design',
     imageUrl: '/image/WEBDESIGN1.png',
+    objectFit: 'cover' as const,
     objectPosition: 'center',
+    bgColor: '#1A1A1A',
   },
   {
     id: 2,
     title: 'Product Details Page',
     imageUrl: '/image/page.png',
+    objectFit: 'cover' as const,
     objectPosition: 'center',
+    bgColor: '#1A1A1A',
   },
   {
     id: 3,
     title: 'Logo',
     imageUrl: '/image/logo.png',
-    objectPosition: '70% center',
+    objectFit: 'contain' as const,
+    objectPosition: 'center',
+    bgColor: '#F0F0F2',
   },
   {
     id: 4,
     title: 'Portfolio',
     imageUrl: '/image/port.png',
-    objectPosition: 'center center',
+    objectFit: 'contain' as const,
+    objectPosition: 'center',
+    bgColor: '#0D4A30',
   },
 ];
 
@@ -60,6 +68,7 @@ function AccordionItem({ item, isActive, onMouseEnter }: AccordionItemProps) {
       style={{
         borderRadius: 'var(--radius-card, 16px)',
         transition: 'width 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
+        backgroundColor: item.bgColor,
       }}
       onMouseEnter={onMouseEnter}
     >
@@ -67,8 +76,8 @@ function AccordionItem({ item, isActive, onMouseEnter }: AccordionItemProps) {
       <img
         src={item.imageUrl}
         alt={item.title}
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: item.objectPosition }}
+        className="absolute inset-0 w-full h-full"
+        style={{ objectFit: item.objectFit, objectPosition: item.objectPosition }}
         onError={(e) => {
           const target = e.target as HTMLImageElement;
           target.src = 'https://placehold.co/400x450/0D593C/ffffff?text=Image';
