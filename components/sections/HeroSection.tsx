@@ -36,13 +36,13 @@ const accordionItems = [
     id: 3,
     title: 'Logo',
     imageUrl: '/image/logo.png',
-    objectPosition: 'right center',
+    objectPosition: '70% center',
   },
   {
     id: 4,
     title: 'Portfolio',
     imageUrl: '/image/port.png',
-    objectPosition: 'center',
+    objectPosition: 'center center',
   },
 ];
 
@@ -67,7 +67,8 @@ function AccordionItem({ item, isActive, onMouseEnter }: AccordionItemProps) {
       <img
         src={item.imageUrl}
         alt={item.title}
-        className="absolute inset-0 w-full h-full object-cover object-center"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ objectPosition: item.objectPosition }}
         onError={(e) => {
           const target = e.target as HTMLImageElement;
           target.src = 'https://placehold.co/400x450/0D593C/ffffff?text=Image';
