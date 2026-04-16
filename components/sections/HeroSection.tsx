@@ -34,14 +34,12 @@ const accordionItems = [
   {
     id: 3,
     title: 'Logo',
-    // 로고 목업
-    imageUrl: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1964&auto=format&fit=crop',
+    imageUrl: '/image/logo.png',
   },
   {
     id: 4,
     title: 'Portfolio',
-    // 컴퓨터 목업
-    imageUrl: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop',
+    imageUrl: '/image/port.png',
   },
 ];
 
