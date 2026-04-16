@@ -48,3 +48,6 @@ next-env.d.ts
 
 # Claude Code local settings & memory
 .claude/
+
+# 루트 image 폴더 (Next.js는 public/ 아래만 서빙, 중복 방지)
+/image/
