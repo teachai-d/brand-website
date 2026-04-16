@@ -48,10 +48,29 @@ const testimonials: Testimonial[] = [
     role: '교육 콘텐츠 크리에이터',
     image: 'https://api.dicebear.com/9.x/thumbs/svg?seed=yoon6',
   },
+  {
+    text: "수업 자료 디자인이 바뀌고 나서 수강생들 반응이 확실히 달라졌어요. 깔끔하고 세련된 결과물에 매우 만족합니다.",
+    name: '강OO',
+    role: '영어 회화 강사',
+    image: 'https://api.dicebear.com/9.x/thumbs/svg?seed=kang7',
+  },
+  {
+    text: "처음 브랜드를 만들 때 방향을 잡지 못했는데, 컨설팅을 통해 제 색깔을 찾게 됐어요. 덕분에 자신감 있게 활동하고 있어요.",
+    name: '한OO',
+    role: '퍼스널 브랜딩 코치',
+    image: 'https://api.dicebear.com/9.x/thumbs/svg?seed=han8',
+  },
+  {
+    text: "강의 소개 페이지를 새로 만들고 나서 문의가 눈에 띄게 늘었어요. 작업 속도도 빠르고 소통도 편했습니다.",
+    name: '오OO',
+    role: '마케팅 강의 운영자',
+    image: 'https://api.dicebear.com/9.x/thumbs/svg?seed=oh9',
+  },
 ];
 
-const col1 = testimonials.filter((_, i) => i % 2 === 0);
-const col2 = testimonials.filter((_, i) => i % 2 !== 0);
+const col1 = testimonials.filter((_, i) => i % 3 === 0);
+const col2 = testimonials.filter((_, i) => i % 3 === 1);
+const col3 = testimonials.filter((_, i) => i % 3 === 2);
 
 const TestimonialsColumn = ({
   className,
@@ -122,9 +141,10 @@ export default function TestimonialsSection() {
             WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
           }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
-            <TestimonialsColumn testimonials={col1} duration={15} />
-            <TestimonialsColumn testimonials={col2} duration={22} className="hidden md:block" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
+            <TestimonialsColumn testimonials={col1} duration={12} />
+            <TestimonialsColumn testimonials={col2} duration={17} className="hidden md:block" />
+            <TestimonialsColumn testimonials={col3} duration={15} className="hidden md:block" />
           </div>
         </div>
       </div>
