@@ -23,23 +23,26 @@ const accordionItems = [
   {
     id: 1,
     title: 'Web Design',
-    // UI/UX 홈페이지 화면
     imageUrl: '/image/WEBDESIGN1.png',
+    objectPosition: 'center',
   },
   {
     id: 2,
     title: 'Product Details Page',
     imageUrl: '/image/page.png',
+    objectPosition: 'center',
   },
   {
     id: 3,
     title: 'Logo',
     imageUrl: '/image/logo.png',
+    objectPosition: 'right center',
   },
   {
     id: 4,
     title: 'Portfolio',
     imageUrl: '/image/port.png',
+    objectPosition: 'center',
   },
 ];
 
@@ -49,18 +52,22 @@ interface AccordionItemProps {
   onMouseEnter: () => void;
 }
 
+
 function AccordionItem({ item, isActive, onMouseEnter }: AccordionItemProps) {
   return (
     <div
-      className={`relative h-[450px] overflow-hidden cursor-pointer transition-all duration-700 ease-in-out ${isActive ? 'w-[380px]' : 'w-[60px]'}`}
-      style={{ borderRadius: 'var(--radius-card, 16px)' }}
+      className={`relative h-[450px] overflow-hidden cursor-pointer ${isActive ? 'w-[380px]' : 'w-[60px]'}`}
+      style={{
+        borderRadius: 'var(--radius-card, 16px)',
+        transition: 'width 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
+      }}
       onMouseEnter={onMouseEnter}
     >
       {/* Background Image */}
       <img
         src={item.imageUrl}
         alt={item.title}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-center"
         onError={(e) => {
           const target = e.target as HTMLImageElement;
           target.src = 'https://placehold.co/400x450/0D593C/ffffff?text=Image';
@@ -75,11 +82,12 @@ function AccordionItem({ item, isActive, onMouseEnter }: AccordionItemProps) {
 
       {/* Caption */}
       <span
-        className="absolute text-white font-semibold whitespace-nowrap transition-all duration-300 ease-in-out"
+        className="absolute text-white font-semibold whitespace-nowrap"
         style={{
           fontFamily: "'Pretendard Variable', sans-serif",
           fontSize: '16px',
           letterSpacing: '0.02em',
+          transition: 'bottom 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
           ...(isActive
             ? { bottom: '24px', left: '50%', transform: 'translateX(-50%) rotate(0deg)' }
             : { bottom: '96px', left: '50%', transform: 'translateX(-50%) rotate(90deg)' }),
