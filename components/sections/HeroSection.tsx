@@ -46,8 +46,8 @@ const accordionItems = [
   },
   {
     id: 4,
-    title: 'Portfolio',
-    imageUrl: '/image/port.png',
+    title: 'GIPHY PORTFOLIO',
+    imageUrl: '/image/gif.png',
     objectFit: 'contain' as const,
     objectPosition: 'center',
     bgColor: '#0D4A30',
