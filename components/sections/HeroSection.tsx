@@ -71,6 +71,7 @@ function AccordionItem({ item, isActive, onMouseEnter }: AccordionItemProps) {
         backgroundColor: item.bgColor,
       }}
       onMouseEnter={onMouseEnter}
+      onClick={item.id === 4 ? () => document.getElementById('giphy-portfolio')?.scrollIntoView({ behavior: 'smooth' }) : undefined}
     >
       {/* Background Image */}
       <img
