@@ -11,7 +11,21 @@ interface ButtonProps {
   className?: string;
 }
 
-export default function Button({
+// Named export for Gallery4 / icon-button usage
+interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: 'default' | 'icon';
+  variant?: 'default' | 'ghost';
+}
+export function Button({ size = 'default', variant = 'default', className = '', ...props }: IconButtonProps) {
+  const base = 'inline-flex items-center justify-center rounded-md font-medium transition-colors disabled:pointer-events-none disabled:opacity-50';
+  const sizes = size === 'icon' ? 'h-9 w-9' : 'h-9 px-4 py-2';
+  const variants = variant === 'ghost'
+    ? 'bg-transparent hover:bg-[#E8F3EC] text-[#1A1A1A]'
+    : 'bg-[#0D593C] text-white hover:bg-[#094530]';
+  return <button className={`${base} ${sizes} ${variants} ${className}`} {...props} />;
+}
+
+export default function DefaultButton({
   children,
   variant = 'primary',
   size = 'md',
